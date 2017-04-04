@@ -1,5 +1,6 @@
 import requests
 
+
 class Swarfarm:
     """A simple example class"""
     i = 12345
