@@ -16,7 +16,7 @@ scriptPath = ntpath.dirname(sys.argv[0])
 
 pageUrl = 'http://summonerswar.wikia.com/wiki/'
 elements = ['light','dark','fire','water','wind']
-
+print ('running...')
 # Run python svResponseBot.py <configfile> voor je eigen configfile ipv config.json
 # Token in config_example.json is voor test bot (@sumwarbot)
 if len(sys.argv) > 1:
