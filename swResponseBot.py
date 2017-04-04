@@ -27,7 +27,8 @@ if len(sys.argv) > 1:
 else:
     #prolly running on horoku
     try:
-        bot = telebot.TeleBot(os.environ.get('token'))
+        token = str(os.environ.get('token'))
+        bot = telebot.TeleBot(token)
     except Exception as e:
         print ('prolly running local, use config file as sys arg')
         sys.exit()
