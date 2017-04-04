@@ -8,11 +8,15 @@ import telebot
 from telebot import types
 import requests
 from lxml import html
+import swarfarm
+
+swarfarm = swarfarm.Swarfarm()
 
 scriptPath = ntpath.dirname(sys.argv[0])
 
 pageUrl = 'http://summonerswar.wikia.com/wiki/'
 elements = ['light','dark','fire','water','wind']
+
 
 with open(str(scriptPath)+'/config.json', 'r') as configFile:
     config = json.load(configFile)
@@ -24,7 +28,12 @@ bot = telebot.TeleBot(config['token'])
 print ('running...')
 @bot.message_handler(commands=['start','help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id,'geef me een monstert! /mon <monname> of /monster <monname>')
+    bot.send_message(message.chat.id,
+                     """
+Suuuup nerds kevin is geeekkkkk!
+/mon <monname> of /monster <monname> - Monster info
+/summon <methode> - Summon methode info
+""")
 
 #used for scraping the page
 def scrapePage(mon):
@@ -71,6 +80,12 @@ def monPrepare(message):
     message.text = message.text.replace(message.text,"/mon "+message.text)
     monReturn(message)
     return
+
+@bot.message_handler(commands=['summon'])
+def summonInfo(message):
+    scrolltype = message.text.replace("/summon ", "")
+    bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype))
+
 
 @bot.message_handler(commands=['mon','Mon','MON','monster','Monster'])
 def monReturn(message):
