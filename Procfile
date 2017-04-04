@@ -1,1 +1,1 @@
-web: python swResponseBot.py
+web: python swResponseBot.py config_example.json
