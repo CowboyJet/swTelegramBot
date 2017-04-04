@@ -60,4 +60,4 @@ class Swarfarm:
 
 if __name__ == "__main__":
     swarfarm = Swarfarm()
-    print swarfarm.getSummonInfo("Water scroll")
+    print (swarfarm.getSummonInfo("Water scroll"))
