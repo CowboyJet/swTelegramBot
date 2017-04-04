@@ -72,7 +72,7 @@ def monPrepare(message):
     monReturn(message)
     return
 
-@bot.message_handler(commands=['mon','monster'])
+@bot.message_handler(commands=['mon','Mon','MON','monster','Monster'])
 def monReturn(message):
     inputtedMon = message.text.split(' ')
     #format the single items in the list
