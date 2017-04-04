@@ -19,21 +19,24 @@ elements = ['light','dark','fire','water','wind']
 
 # Run python svResponseBot.py <configfile> voor je eigen configfile ipv config.json
 # Token in config_example.json is voor test bot (@sumwarbot)
-configfile = sys.argv[1] if len(sys.argv) > 1 else "config.json"
+if len(sys.argv) > 1:
+    with open(sys.argv[1], 'r') as configFile:
+        config = json.load(configFile)
+    configFile.close()
+    bot = telebot.TeleBot(config['token'])
+else:
+    #prolly running on horoku
+    try:
+        bot = telebot.TeleBot(os.environ.get('token'))
+    except Exception as e:
+        print ('prolly running local, use config file as sys arg')
+        sys.exit()
 
-with open(configfile, 'r') as configFile:
-    config = json.load(configFile)
-configFile.close()
-
-bot = telebot.TeleBot(config['token'])
-# bot = telebot.TeleBot(config['test'])
 
 print ('running...')
 @bot.message_handler(commands=['start','help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id,
-                     """
-Suuuup nerds kevin is geeekkkkk!
+    bot.send_message(message.chat.id,"""
 /mon <monname> of /monster <monname> - Monster info
 /summon <methode> - Summon methode info
 """)
