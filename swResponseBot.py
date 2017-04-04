@@ -18,7 +18,7 @@ pageUrl = 'http://summonerswar.wikia.com/wiki/'
 elements = ['light','dark','fire','water','wind']
 
 
-with open(str(scriptPath)+'/config_example.json', 'r') as configFile:
+with open(str(scriptPath)+'/config.json', 'r') as configFile:
     config = json.load(configFile)
 configFile.close()
 
