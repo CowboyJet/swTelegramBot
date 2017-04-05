@@ -1,1 +1,1 @@
-worker: python swResponseBot.py
+worker: python swResponseBot.py $PORT
