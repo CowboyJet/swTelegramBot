@@ -9,6 +9,7 @@ from telebot import types
 import requests
 from lxml import html
 import swarfarm
+import thread
 print ('running...')
 swarfarm = swarfarm.Swarfarm()
 
@@ -131,5 +132,11 @@ def monReturn(message):
 
     returnString = ''.join(infoList)
     bot.send_message(message.chat.id,str(returnString),disable_web_page_preview=1)
+
+def runflask():
+    app = Flask(__name__)
+    app.run()
+ 
+thread.start_new_thread(runflask, ())
 
 bot.polling()
