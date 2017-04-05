@@ -1,1 +1,1 @@
-web: python swResponseBot.py $PORT
+web: python swResponseBot.py
