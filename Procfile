@@ -1,1 +1,1 @@
-web: python swResponseBot.py
+worker: python swResponseBot.py
