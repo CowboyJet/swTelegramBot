@@ -9,7 +9,7 @@ from telebot import types
 import requests
 from lxml import html
 import swarfarm
-
+print ('running...')
 swarfarm = swarfarm.Swarfarm()
 
 scriptPath = ntpath.dirname(sys.argv[0])
