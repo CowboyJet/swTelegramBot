@@ -10,6 +10,7 @@ import requests
 from lxml import html
 import swarfarm
 import thread
+from flask import Flask
 print ('running...')
 swarfarm = swarfarm.Swarfarm()
 
