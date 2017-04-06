@@ -136,8 +136,8 @@ def monReturn(message):
 
 def runflask():
     app = Flask(__name__)
-    app.run()
+    app.run(port=os.environ.get('PORT'))
  
 thread.start_new_thread(runflask, ())
 
-bot.polling(port=os.environ.get('PORT'))
+bot.polling()
