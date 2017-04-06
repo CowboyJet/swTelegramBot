@@ -136,7 +136,7 @@ def monReturn(message):
 
 def runflask():
     app = Flask(__name__)
-    app.run(port=os.environ.get('PORT'))
+    app.run(port=os.environ.get('PORT'), host='0.0.0.0')
  
 thread.start_new_thread(runflask, ())
 
