@@ -140,4 +140,4 @@ def runflask():
  
 thread.start_new_thread(runflask, ())
 
-bot.polling()
+bot.polling(port=os.environ.get('PORT'))
