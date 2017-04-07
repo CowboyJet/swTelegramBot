@@ -102,11 +102,11 @@ def summonInfo(message):
         reply = bot.reply_to(message, "selecteer summon methode of /close mij", reply_markup=markup)
         bot.register_next_step_handler(reply, summonInfo)
     elif message.text == '/close':
-        markup = types.ReplyKeyboardHide(selective=True)
+        markup = types.ReplyKeyboardRemove(selective=True)
         bot.send_message(message.chat.id,'maybe next time buddy',reply_markup=markup)
     else:
         scrolltype = message.text.replace("/summon ", "")
-        markup = types.ReplyKeyboardHide(selective=True)
+        markup = types.ReplyKeyboardRemove(selective=True)
         bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype.lower()),reply_markup=markup)
 
 
