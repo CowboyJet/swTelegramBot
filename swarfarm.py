@@ -41,7 +41,7 @@ class Swarfarm:
 
             return message
         except KeyError:
-            return """Voer een valide summon methode in:\nUnknown scroll | Social summon | Mystical scroll | Crystals | Fire scroll | Water scroll | Wind scroll | LightDark Scroll | Legendary scroll | Summon stones | LightDark pieces | Legendary pieces | Transcendance scroll"""
+            return """Voer een valide /summon methode in!"""
 
 if __name__ == "__main__":
     swarfarm = Swarfarm()

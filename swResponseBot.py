@@ -93,8 +93,21 @@ def monPrepare(message):
 
 @bot.message_handler(commands=['summon'])
 def summonInfo(message):
-    scrolltype = message.text.replace("/summon ", "")
-    bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype.lower()))
+    if message.text.strip() == '/summon':
+        markup = types.ReplyKeyboardMarkup(selective=True,one_time_keyboard=True,resize_keyboard=True)
+        markup.row('Mystical scroll','Crystals')
+        markup.row('Fire scroll','Water scroll','Wind scroll')
+        markup.row('LightDark Scroll','Legendary scroll','Summon stones')
+        markup.row('LightDark pieces','Legendary pieces')
+        reply = bot.reply_to(message, "selecteer summon methode of /close mij", reply_markup=markup)
+        bot.register_next_step_handler(reply, summonInfo)
+    elif message.text == '/close':
+        markup = types.ReplyKeyboardHide(selective=True)
+        bot.send_message(message.chat.id,'maybe next time buddy',reply_markup=markup)
+    else:
+        scrolltype = message.text.replace("/summon ", "")
+        markup = types.ReplyKeyboardHide(selective=True)
+        bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype.lower()),reply_markup=markup)
 
 
 @bot.message_handler(commands=['mon','Mon','MON','monster','Monster'])
@@ -144,8 +157,8 @@ def polltoflask():
         requests.get("https://swmonbot.herokuapp.com/")
         time.sleep(900)
 
-
-thread.start_new_thread(runflask, ())
-thread.start_new_thread(polltoflask, ())
+if not len(sys.argv) > 1:
+    thread.start_new_thread(runflask, ())
+    thread.start_new_thread(polltoflask, ())
 
 bot.polling()
