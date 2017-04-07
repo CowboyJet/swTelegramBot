@@ -7,6 +7,7 @@ import ntpath
 import telebot
 from telebot import types
 import requests
+import time
 from lxml import html
 import swarfarm
 import thread
@@ -137,7 +138,14 @@ def monReturn(message):
 def runflask():
     app = Flask(__name__)
     app.run(port=os.environ.get('PORT'), host='0.0.0.0')
+    
+def polltoflask():
+    while True:
+        requests.get("https://swmonbot.herokuapp.com/")
+        time.sleep(900)
+            
  
 thread.start_new_thread(runflask, ())
+thread.start_new_thread(polltoflask, ())
 
 bot.polling()
