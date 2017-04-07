@@ -148,6 +148,21 @@ def monReturn(message):
     returnString = ''.join(infoList)
     bot.send_message(message.chat.id,str(returnString),disable_web_page_preview=1)
 
+
+@bot.message_handler(commands=['buffs'])
+def buffslist(message):
+    bot.send_message(message.chat.id,str('http://summonerswar.wikia.com/wiki/Skills#Buffs'),disable_web_page_preview=1)
+    return
+
+@bot.message_handler(commands=['debuffs'])
+def debufflist(message):
+    bot.send_message(message.chat.id,str('http://summonerswar.wikia.com/wiki/Skills#Debuffs'),disable_web_page_preview=1)
+    return
+
+
+
+
+
 def runflask():
     app = Flask(__name__)
     app.run(port=os.environ.get('PORT'), host='0.0.0.0')
