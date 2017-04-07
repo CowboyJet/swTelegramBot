@@ -94,7 +94,7 @@ def monPrepare(message):
 @bot.message_handler(commands=['summon'])
 def summonInfo(message):
     scrolltype = message.text.replace("/summon ", "")
-    bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype))
+    bot.send_message(message.chat.id,swarfarm.getSummonInfo(scrolltype.lower()))
 
 
 @bot.message_handler(commands=['mon','Mon','MON','monster','Monster'])
@@ -138,13 +138,13 @@ def monReturn(message):
 def runflask():
     app = Flask(__name__)
     app.run(port=os.environ.get('PORT'), host='0.0.0.0')
-    
+
 def polltoflask():
     while True:
         requests.get("https://swmonbot.herokuapp.com/")
         time.sleep(900)
-            
- 
+
+
 thread.start_new_thread(runflask, ())
 thread.start_new_thread(polltoflask, ())
 

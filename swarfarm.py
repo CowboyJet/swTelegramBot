@@ -24,7 +24,7 @@ class Swarfarm:
         }
         try:
             params = {
-                "summon_method": scrollmap[scrolltype],
+                "summon_method": scrollmap[scrolltype.capitalize()],
                 "chart_type":"grade"
             }
             grade = requests.get(self.chartsurl+"/summon", params=params).json()
@@ -33,7 +33,7 @@ class Swarfarm:
 
                 total += serie["y"]
 
-            message = "Summon rates voor %s:\n" % scrolltype
+            message = "Summon rates voor %s:\n" % scrolltype.capitalize()
             for serie in grade["series"][0]["data"]:
                 ster = str(serie["name"][0]) + " ster"
                 procent = round((float(serie["y"]) / total) * 100, 2)
@@ -41,8 +41,7 @@ class Swarfarm:
 
             return message
         except KeyError:
-            return """Voer een valide summon methode in:
-            Unknown scroll | Social summon | Mystical scroll | Crystals | Fire scroll | Water scroll | Wind scroll | LightDark Scroll | Legendary scroll | Summon stones | LightDark pieces | Legendary pieces | Transcendance scroll"""
+            return """Voer een valide summon methode in:\nUnknown scroll | Social summon | Mystical scroll | Crystals | Fire scroll | Water scroll | Wind scroll | LightDark Scroll | Legendary scroll | Summon stones | LightDark pieces | Legendary pieces | Transcendance scroll"""
 
 if __name__ == "__main__":
     swarfarm = Swarfarm()
